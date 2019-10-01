@@ -1,0 +1,18 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(19, 50px);
+
+}
+
+.grid-item {
+
+  color: red;
+  width: 50px;
+  height: 50px;
+  background: url('img/herbe.png');
+
+}
+
+.tuileIndestructible {
+  background: url('img/bloc_indestructible.png');
+}
