@@ -1,0 +1,17 @@
+Bomberman
+
+Général :
+- Les monstres et personnage ne sont pas traversables
+
+Personnage :
+
+Monstres :
+- Un déplacement par seconde pour les monstres
+
+Bombes :
+- Toutes les unités peuvent poser une bombe
+- Une bombe explose au bout de 3 secondes
+- La bombe explose sur une unité autour d'elle
+
+[1,2]
+[30,40]
