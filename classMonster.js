@@ -6,6 +6,9 @@ class Monster{
       this.timeBomb = timeBomb;
       this.speed = speed;
 
+      this.el.style.left = (caseSize * (this.posY - 1));
+      this.el.style.top = (caseSize * (this.posX - 1));
+
       this.selectDirection(this);
   }
 
@@ -56,11 +59,11 @@ class Monster{
   moveUnit(moveX, moveY){
     if(moveX != 0){
       this.setPosX(this.getPosX() + moveX);
-      animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveX * caseSize)),this.speed);
+      animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveX * caseSize)),this.speed);
     }
     else if(moveY != 0){
       this.setPosY(this.getPosY() + moveY);
-      animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveY * caseSize)),this.speed);
+      animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveY * caseSize)),this.speed);
     }
   }
 
@@ -71,13 +74,13 @@ class Monster{
 
       // Get all directions available
       // Up = 1, Right = 2, Bottom = 3, Left = 4
-      if(this.getPosY() > 1 && cases[this.getPosX()][this.getPosY() - 1] != undefined && cases[this.getPosX()][this.getPosY() - 1] == 0)
-        positions.push(1);
-      if(this.getPosX() < maxX && cases[this.getPosX() + 1] != undefined && cases[this.getPosX() + 1][this.getPosY()] != undefined && cases[this.getPosX() + 1][this.getPosY()] == 0)
-        positions.push(2);
-      if(this.getPosY() < maxY && cases[this.getPosX()][this.getPosY() + 1] != undefined && cases[this.getPosX()][this.getPosY() + 1] == 0)
-        positions.push(3);
       if(this.getPosX() > 1 && cases[this.getPosX() - 1] != undefined && cases[this.getPosX() - 1][this.getPosY()] != undefined && cases[this.getPosX() - 1][this.getPosY()] == 0)
+        positions.push(1);
+      if(this.getPosY() < maxY && cases[this.getPosX()][this.getPosY() + 1] != undefined && cases[this.getPosX()][this.getPosY() + 1] == 0)
+        positions.push(2);
+      if(this.getPosX() < maxX && cases[this.getPosX() + 1] != undefined && cases[this.getPosX() + 1][this.getPosY()] != undefined && cases[this.getPosX() + 1][this.getPosY()] == 0)
+        positions.push(3);
+      if(this.getPosY() > 1 && cases[this.getPosX()][this.getPosY() - 1] != undefined && cases[this.getPosX()][this.getPosY() - 1] == 0)
         positions.push(4);
 
       // Get random position in all possible positions
@@ -85,16 +88,16 @@ class Monster{
 
       // move monster
       if(positions[posRandom] == 1){ // Up
-        this.moveUnit(0,-1);
+        this.moveUnit(-1,0);
       }
       else if(positions[posRandom] == 2){ // Right
-        this.moveUnit(1,0);
-      }
-      else if(positions[posRandom] == 3){ // Bottom
         this.moveUnit(0,1);
       }
+      else if(positions[posRandom] == 3){ // Bottom
+        this.moveUnit(1,0);
+      }
       else if(positions[posRandom] == 4){ // Left
-        this.moveUnit(-1,0);
+        this.moveUnit(0,-1);
       }
 
       // define if the monster drop a bomb

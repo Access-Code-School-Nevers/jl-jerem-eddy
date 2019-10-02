@@ -10,18 +10,16 @@ var timeAction = 400;
 
 
 for (var i = 0; i <= maxX; i++) {
-    cases[i] = new Array(maxY);
-}
-for(var posX=1 ; posX<=maxX ; posX++){
-  for(var posY=1 ; posY<=maxY ; posY++){
-    cases[posX][posY] = 0;
-  }
+    cases[i] = new Array(maxY+1);
 }
 
-
+// Create table
+carte('gridContainer','div',19,13);
 
 // Hero
-var hero = new Hero(1,1,document.getElementById('hero'),0,timeAction,0);
+var hero = new Hero(2,2,document.getElementById('hero'),0,timeAction,0);
+hero.setLeft(hero.getEl().offsetWidth * (hero.getPosX() - 1));
+hero.setTop(hero.getEl().offsetWidth * (hero.getPosY() - 1));
 
 
 // Handle character moves
@@ -30,19 +28,19 @@ document.addEventListener('keydown', function(event) {
     var position = 0;
 
     if (event.code == 'ArrowUp') {
-      if(hero.getPosY() > 1 && cases[hero.getPosX()][hero.getPosY() - 1] != undefined && cases[hero.getPosX()][hero.getPosY() - 1] == 0)
+      if(hero.getPosX() > 1 && cases[hero.getPosX() - 1] != undefined && cases[hero.getPosX() - 1][hero.getPosY()] != undefined && cases[hero.getPosX() - 1][hero.getPosY()] == 0)
         position = 1;
     }
     else if (event.code == 'ArrowRight') {
-      if(hero.getPosX() < maxX && cases[hero.getPosX() + 1] != undefined && cases[hero.getPosX() + 1][hero.getPosY()] != undefined && cases[hero.getPosX() + 1][hero.getPosY()] == 0)
+      if(hero.getPosY() < maxY && cases[hero.getPosX()][hero.getPosY() + 1] != undefined && cases[hero.getPosX()][hero.getPosY() + 1] == 0)
         position = 2;
     }
     else if (event.code == 'ArrowDown') {
-      if(hero.getPosY() < maxY && cases[hero.getPosX()][hero.getPosY() + 1] != undefined && cases[hero.getPosX()][hero.getPosY() + 1] == 0)
+      if(hero.getPosX() < maxX && cases[hero.getPosX() + 1] != undefined && cases[hero.getPosX() + 1][hero.getPosY()] != undefined && cases[hero.getPosX() + 1][hero.getPosY()] == 0)
         position = 3;
     }
     else if (event.code == 'ArrowLeft') {
-      if(hero.getPosX() > 1 && cases[hero.getPosX() - 1] != undefined && cases[hero.getPosX() - 1][hero.getPosY()] != undefined && cases[hero.getPosX() - 1][hero.getPosY()] == 0)
+      if(hero.getPosY() > 1 && cases[hero.getPosX()][hero.getPosY() - 1] != undefined && cases[hero.getPosX()][hero.getPosY() - 1] == 0)
         position = 4;
     }
 
@@ -54,7 +52,7 @@ document.addEventListener('keydown', function(event) {
 
 // Monster
 var monsters = new Array(nbMonsters);
-// monsters[0] = new Monster(1,1,document.getElementById('monster'),0,timeAction);
+monsters[0] = new Monster(2,18,document.getElementById('monster'),0,timeAction);
 
 
 
@@ -79,5 +77,79 @@ function dropBomb(posX, posY, character){
 
     character.setTimeBomb(character);
     cases[posX][posY] = 2;
+  }
+}
+
+
+
+
+
+// ========================= Script terrain =====================
+function carte (parentElementId, childElement, column, row)
+{
+
+  this.parentElementId = parentElementId;
+  this.childElement = childElement;
+  this.column = column;
+  this.row = row;
+
+  let nColumn = this.column + 1;
+  let nTuile = this.column * this.row;
+  let parentElement = document.getElementById(this.parentElementId);
+  let posx = '';
+  let posy = '';
+  let test = '';
+  let divGridItem = '';
+
+  parentElement.className='grid-container';
+  // parentElement.setAttribute("style", "display: grid;");
+  // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
+
+  let count = 1;
+  let count2 = 1;
+  for(let i = 0;i<nTuile;i++)
+  {
+
+    if (count == nColumn)
+    {
+      count=1;
+      count2++;
+    }
+
+    let childElement = document.createElement(this.childElement);
+    childElement.className='grid-item';
+    childElement.setAttribute("style", "color: red;");
+    childElement.style.width = "50px;";
+    childElement.style.height = "50px;";
+    childElement.style.background = "url('img/herbe.png');";
+    childElement.setAttribute("id", count2+'y'+count);
+    var appendChildElement = parentElement.appendChild(childElement);
+    // appendChildElement.innerHTML = i;
+    count++
+  }
+
+  let allDiv = document.getElementsByClassName('grid-item');
+
+  for (var i = 0; i < allDiv.length; i++) {
+    test = allDiv[i].id.split('y');
+    posx = test[0];
+    posy = test[1];
+    if (test[0] == 1 || test[0] == this.row || test[1] == 1 || test[1] == this.column) {
+
+      cases[posx][posy] = 1;
+      divGridItem = document.getElementById(posx+'y'+posy);
+      divGridItem.classList.add('tuileIndestructible');
+    }
+    else if (posx%2 == 1 && posy%2 == 1)
+    {
+      cases[posx][posy] = 1;
+      divGridItem = document.getElementById(posx+'y'+posy);
+      divGridItem.classList.add('tuileIndestructible');
+    }
+    else
+    {
+      cases[posx][posy] = 0;
+    }
+
   }
 }

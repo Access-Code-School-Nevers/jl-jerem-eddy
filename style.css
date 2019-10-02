@@ -1,7 +1,30 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(19, 50px);
+  position:relative;
+}
+
+.grid-item {
+
+  color: red;
+  width: 50px;
+  height: 50px;
+  background: url('img/herbe.png');
+
+}
+
+.tuileIndestructible {
+  background: url('img/bloc_indestructible.png');
+  width:50px;
+  height:50px;
+}
+
 #hero{
   background-image: url("/images/back.svg");
  }
 
-body {
-  background:yellow;
+.unit{
+  width:50px;
+  height:50px;
+  position:absolute;
 }

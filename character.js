@@ -54,27 +54,25 @@ class Hero{
   }
   setMoving(el){
     el.moving = 1;
-    console.log(el.moving);
 
     setTimeout(function(){
       el.moving = 0;
-      console.log(el.moving);
     },el.speed);
   }
 
   // move hero
   direction(pos){
     if(pos == 1){ // Up
-      this.moveUnit(0,-1);
+      this.moveUnit(-1,0);
     }
     else if(pos == 2){ // Right
-      this.moveUnit(1,0);
-    }
-    else if(pos == 3){ // Bottom
       this.moveUnit(0,1);
     }
+    else if(pos == 3){ // Bottom
+      this.moveUnit(1,0);
+    }
     else if(pos == 4){ // Left
-      this.moveUnit(-1,0);
+      this.moveUnit(0,-1);
     }
   }
 
@@ -84,13 +82,11 @@ class Hero{
 
     if(moveX != 0){
       this.setPosX(this.getPosX() + moveX);
-      console.log('Après déplacement : '+this.getPosX()+':'+this.getPosY());
-      animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveX * caseSize)),this.speed);
+      animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveX * caseSize)),this.speed);
     }
     else if(moveY != 0){
       this.setPosY(this.getPosY() + moveY);
-      console.log('Après déplacement : '+this.getPosX()+':'+this.getPosY());
-      animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveY * caseSize)),this.speed);
+      animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveY * caseSize)),this.speed);
     }
   }
 }
