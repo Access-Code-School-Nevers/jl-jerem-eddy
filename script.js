@@ -96,3 +96,5 @@ function handleBombs(){
     }
   });
 }
+
+// ========================= Script terrain =====================
