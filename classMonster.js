@@ -60,13 +60,13 @@ class Monster{
 
     // Get all directions available
     // Up = 1, Right = 2, Bottom = 3, Left = 4
-    if(this.getPosY() > 1 && cases[this.getPosX()][this.getPosY() - 1] != undefined && cases[this.getPosX()][this.getPosY() - 1].getType() == 0)
+    if(this.getPosY() > 1 && cases[this.getPosX()][this.getPosY() - 1] != undefined && cases[this.getPosX()][this.getPosY() - 1] == 0)
       positions.push(1);
-    if(this.getPosY() < maxY && cases[this.getPosX() + 1] != undefined && cases[this.getPosX() + 1][this.getPosY()] != undefined && cases[this.getPosX() + 1][this.getPosY()].getType() == 0)
+    if(this.getPosY() < maxY && cases[this.getPosX() + 1] != undefined && cases[this.getPosX() + 1][this.getPosY()] != undefined && cases[this.getPosX() + 1][this.getPosY()] == 0)
       positions.push(2);
-    if(this.getPosX() < maxX && cases[this.getPosX()][this.getPosY() + 1] != undefined && cases[this.getPosX()][this.getPosY() + 1].getType() == 0)
+    if(this.getPosX() < maxX && cases[this.getPosX()][this.getPosY() + 1] != undefined && cases[this.getPosX()][this.getPosY() + 1] == 0)
       positions.push(3);
-    if(this.getPosX() > 1 && cases[this.getPosX() - 1] != undefined && cases[this.getPosX() - 1][this.getPosY()] != undefined && cases[this.getPosX() - 1][this.getPosY()].getType() == 0)
+    if(this.getPosX() > 1 && cases[this.getPosX() - 1] != undefined && cases[this.getPosX() - 1][this.getPosY()] != undefined && cases[this.getPosX() - 1][this.getPosY()] == 0)
       positions.push(4);
 
     // Get random position in all possible positions

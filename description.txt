@@ -13,5 +13,12 @@ Bombes :
 - Une bombe explose au bout de 3 secondes
 - La bombe explose sur une unité autour d'elle
 
-[1,2]
-[30,40]
+
+////////////////////////////////////
+//              TYPE              //
+//          0 = Empty             //
+//          1 = Wall              //
+//          2 = Bomb              //
+//          3 = Unit              //
+//          4 = Destructible Wall //
+////////////////////////////////////
