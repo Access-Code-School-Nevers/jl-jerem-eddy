@@ -3,9 +3,9 @@
 // User 2
 
 // -------- Initiate table of cases ------ //
-var maxX = 19;
-var maxY = 11;
-var caseSize = 40;
+var maxX = 18;
+var maxY = 13;
+var caseSize = 50;
 var nbMonsters = 2;
 var bombs = new Array();
 var cases = new Array(maxX+1);
@@ -18,6 +18,7 @@ for(var posX=1 ; posX<=maxX ; posX++){
     cases[posX][posY] = new Case(posX, posY, 0);
   }
 }
+
 
 // Monster
 var monsters = new Array(nbMonsters);
@@ -78,8 +79,7 @@ function animateMovement(character, type, pos){
 // Drop a bomb on the floor
 function dropBomb(posX, posY, character){
   if(cases[posX][posY].getType() == 0){
-    bombs.push({time:3, x:posX, y:posY});
-    boms.push(new Bomb())
+    bombs.push(new Bomb(posX,posY,3));
     character.setTimeBomb();
     cases[posX][posY].setType(2);
   }

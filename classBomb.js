@@ -1,11 +1,3 @@
-////////////////////////////////////
-//              TYPE              //
-//          0 = Empty             //
-//          1 = Wall              //
-//          2 = Bomb              //
-//          3 = Unit              //
-////////////////////////////////////
-
 class Bomb{
   constructor(posX, posY, time) {
       this.posX = posX;
