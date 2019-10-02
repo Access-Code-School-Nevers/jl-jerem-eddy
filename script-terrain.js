@@ -26,6 +26,11 @@ function carte (parentElementId, childElement, column, row)
   let test = '';
   let divGridItem = '';
 
+
+  function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+  }
+  let nBrique = getRndInteger(nTuile - 20,nTuile);
   parentElement.className='grid-container';
   parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
   // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
@@ -88,3 +93,4 @@ function carte (parentElementId, childElement, column, row)
 
   }
 carte('gridContainer','div',19,19);
+console.log();
