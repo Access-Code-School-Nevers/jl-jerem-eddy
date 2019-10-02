@@ -1,7 +1,7 @@
-/* <<<<<<< HEAD */
 .grid-container {
   display: grid;
-
+  grid-template-columns: repeat(19, 50px);
+  position:relative;
 }
 
 .grid-item {
@@ -15,6 +15,8 @@
 
 .tuileIndestructible {
   background: url('img/bloc_indestructible.png');
+  width:50px;
+  height:50px;
 }
 
 .brique {
@@ -28,7 +30,8 @@
   background-image: url("/images/back.svg");
  }
 
-body {
-  background:yellow;
-/* >>>>>>> dfbc97c2bdda39e673793c752f12d3d5ae36dc78 */
+.unit{
+  width:50px;
+  height:50px;
+  position:absolute;
 }
