@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<LINK rel="stylesheet" type="text/css" href="style.css">
+<title>Nouvelle page 1</title>
+
+<script type="text/javascript">
+function RandomPlace(){
+var mintop=10
+var maxtop=450
+var minleft=100
+var maxleft=700
+tabdiv=document.getElementsByTagName('div')
+var i=1;
+//while (tabdiv[i++]){//
+	tabdiv[i-1].style.top=mintop+Math.floor(Math.random()*(maxtop-mintop))+'px';
+	tabdiv[i-1].style.left=minleft+Math.floor(Math.random()*(maxleft-minleft))+'px';
+
+//}
+//
+}
+</script>
+
+  <style type="text/css">
+html, body {height:100%; width:100%;}
+body{margin:0;
+padding:0;}
+div {position:absolute;
+      width:50px;
+      height:20px;
+      }
+
+</style>
+
+</head>
+
+<body onload="RandomPlace()">
+<div id="hero"></div>
+<!--  <img src="./front.svg">  -->
+</body>
+
+</html>

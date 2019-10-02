@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .grid-container {
   display: grid;
   grid-template-columns: repeat(19, 50px);
@@ -19,4 +20,12 @@
 
 .brique {
 
+=======
+#hero{
+  background-image: url("/images/back.svg");
+ }
+
+body {
+  background:yellow;
+>>>>>>> dfbc97c2bdda39e673793c752f12d3d5ae36dc78
 }
