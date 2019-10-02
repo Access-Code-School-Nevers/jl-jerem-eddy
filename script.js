@@ -1,5 +1,5 @@
 // -------- Initiate table of cases ------ //
-
+console.log(cases);
 // Hero
 var hero = new Hero(2,2,document.getElementById('hero'),0,timeAction,0);
 hero.setLeft(hero.getEl().offsetWidth * (hero.getPosX() - 1));
@@ -16,6 +16,7 @@ document.addEventListener('keydown', function(event) {
         position = 1;
     }
     else if (event.code == 'ArrowRight') {
+      console.log(cases[hero.getPosX()][hero.getPosY() + 1]);
       if(hero.getPosY() < maxY && cases[hero.getPosX()][hero.getPosY() + 1] != undefined && cases[hero.getPosX()][hero.getPosY() + 1] == 0)
         position = 2;
     }
@@ -63,18 +64,54 @@ function dropBomb(posX, posY, character){
     // Add a bomb to explode
     bombs.push(new Bomb(posX,posY));
 
+    setTimeout(function(){
+      bombs[bombs.length - 1].explosion();
+      bombs[bombs.length - 1] = null;
+
+      createBomb('img/explosionCenter.png','bomb',posX,posY);
+
+      if(cases[posX - 1][posY] != 1)
+        createBomb('img/explosionTop.png','bomb',(posX-1),posY);
+      if(cases[posX][posY + 1] != 1)
+        createBomb('img/explosionRight.png','bomb',posX,(posY + 1));
+      if(cases[posX + 1][posY] != 1)
+        createBomb('img/explosionBottom.png','bomb',(posX + 1),posY);
+      if(cases[posX][posY - 1] != 1)
+        createBomb('img/explosionLeft.png','bomb',posX,(posY - 1));
+
+    }, 2000);
+
     character.setTimeBomb(character);
     cases[posX][posY] = 2;
   }
 }
 
 
+// Add Image
+function createBomb(link,classImg,posX,posY){
+  var img = document.createElement("img");
+  img.src = link;
+  img.classList.add(classImg);
+  img.style.left = (caseSize * (posY - 1));
+  img.style.top = (caseSize * (posX - 1));
+
+  var src = document.getElementById("gridContainer");
+  src.appendChild(img);
+
+  if(cases[posX][posY] == 4){
+    document.getElementById(posX+'y'+posY).classList.remove('brique');
+  }
+  cases[posX][posY] = 0;
+
+  setTimeout(function(){
+    img.remove();
+  },600);
+}
+
 
 
 
 // ========================= Script terrain =====================
-<<<<<<< HEAD
-=======
 function carte (parentElementId, childElement, column, row)
 {
 
@@ -143,4 +180,3 @@ function carte (parentElementId, childElement, column, row)
 
   }
 }
->>>>>>> adc70ec899b9475f077f333a195785b233876a2f
