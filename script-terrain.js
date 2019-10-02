@@ -1,7 +1,7 @@
 
 var maxX = 19;
 var maxY = 11;
-var caseSize = 40;
+var caseSize = 50;
 var nbMonsters = 2;
 var bombs = new Array();
 var cases = new Array(maxX+1);
@@ -78,9 +78,14 @@ function carte (parentElementId, childElement, column, row)
       }
       else
       {
-        cases[posx][posy] = 4;
-        divGridItem = document.getElementById(posx+'y'+posy);
-        divGridItem.classList.add('brique');
+        if(Math.floor(Math.random() * 4) == 1){
+          cases[posx][posy] = 4;
+          divGridItem = document.getElementById(posx+'y'+posy);
+          divGridItem.classList.add('brique');
+        }
+        else{
+          cases[posx][posy] = 0;
+        }
       }
 
     }
@@ -88,4 +93,4 @@ function carte (parentElementId, childElement, column, row)
   }
 
   }
-carte('gridContainer','div',19,19);
+carte('gridContainer','div',maxX,maxY);

@@ -36,7 +36,7 @@ document.addEventListener('keydown', function(event) {
 
 // Monster
 var monsters = new Array(nbMonsters);
-monsters[0] = new Monster(2,18,document.getElementById('monster'),0,timeAction);
+monsters[0] = new Monster(10,18,document.getElementById('monster'),0,timeAction);
 
 
 
