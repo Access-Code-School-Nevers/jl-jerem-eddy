@@ -8,99 +8,102 @@ var cases = new Array(maxX+1);
 var timeAction = 400;
 
 for (var i = 0; i <= maxX; i++) {
-    cases[i] = new Array(maxY);
+  cases[i] = new Array(maxY);
 }
 
-function carte (parentElementId, childElement, column, row)
+function carte (parentElementId, childElementTagName, column, row)
 {
-
-  this.parentElementId = parentElementId;
-  this.childElement = childElement;
-  this.column = column;
-  this.row = row;
-
-  let nColumn = this.column + 1;
-  let nTuile = this.column * this.row;
-  let parentElement = document.getElementById(this.parentElementId);
-  let posx = '';
-  let posy = '';
-  let test = '';
-  let divGridItem = '';
-
-
-  function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min) ) + min;
-  }
-  let nBrique = getRndInteger(nTuile - 20,nTuile);
-  parentElement.className='grid-container';
-  parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
-  // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
-
-  let count = 1;
-  let count2 = 1;
-  for(let i = 0;i<nTuile;i++)
+  if (String(parentElementId) && String(childElementTagName) && parseInt(column) && parseInt(row) != '')
   {
-
-    if (count == nColumn)
+    if (column%2 && row%2 == 0)
     {
-      count=1;
-      count2++;
+      column = 19;
+      row = 19;
     }
 
-    let childElement = document.createElement(this.childElement);
-    childElement.className='grid-item';
-    childElement.setAttribute("style", "color: white;");
-    childElement.style.width = "50px;";
-    childElement.style.height = "50px;";
-    childElement.style.background = "url('img/herbe.png');";
-    childElement.setAttribute("id", count2+'y'+count);
-    var appendChildElement = parentElement.appendChild(childElement);
-    appendChildElement.innerHTML = 'x'+count2+'-y'+count;
-    count++
-  }
-  let allDiv = document.getElementsByClassName('grid-item');
 
-  for (var i = 0; i < allDiv.length; i++) {
-    test = allDiv[i].id.split('y');
-    posx = test[0];
-    posy = test[1];
-    if (test[0] == 1 || test[0] == this.row || test[1] == 1 || test[1] == this.column) {
 
-      cases[posx][posy] = 1;
-      divGridItem = document.getElementById(posx+'y'+posy);
-      divGridItem.classList.add('tuileIndestructible');
-    }
-    else if (posx%2 == 1 && posy%2 == 1)
+    let nColumn = column + 1;
+    let nTuile = column * row;
+    let parentElement = document.getElementById(parentElementId);
+    let childElement = '';
+    let divGridItem = '';
+    let allDiv = '';
+    let posx = '';
+    let posy = '';
+    let allDivId = '';
+    let count = 1;
+    let count2 = 1;
+
+
+    parentElement.className='grid-container';
+    parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
+    // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
+
+
+    for(let i = 0;i<nTuile;i++)
     {
-      cases[posx][posy] = 1;
-      divGridItem = document.getElementById(posx+'y'+posy);
-      divGridItem.classList.add('tuileIndestructible');
+
+      if (count == nColumn)
+      {
+        count=1;
+        count2++;
+      }
+
+      childElement = document.createElement(childElementTagName);
+      childElement.className='grid-item';
+      childElement.setAttribute("style", "color: white;");
+      childElement.style.width = "50px;";
+      childElement.style.height = "50px;";
+      childElement.style.background = "url('img/herbe.png');";
+      childElement.setAttribute("id", count2+'y'+count);
+      parentElement.appendChild(childElement);
+      count++
     }
-    else
-    {
-      if (posx == 2 && posy == 2 || posx == 2 && posy == 3 || posx == 3 && posy == 2 || posx == this.row-1 && posy == this.column-1 || posx == this.row-1 && posy == this.column-2 || posx == this.row-2 && posy == this.column-1) {
-        cases[posx][posy] = 0;
+    allDiv = document.getElementsByClassName('grid-item');
+
+    for (var i = 0; i < allDiv.length; i++) {
+      allDivId = allDiv[i].id.split('y');
+      posx = allDivId[0];
+      posy = allDivId[1];
+      if (allDivId[0] == 1 || allDivId[0] == row || allDivId[1] == 1 || allDivId[1] == column) {
+
+        cases[posx][posy] = 1;
+        divGridItem = document.getElementById(posx+'y'+posy);
+        divGridItem.classList.add('tuileIndestructible');
+      }
+      else if (posx%2 == 1 && posy%2 == 1)
+      {
+        cases[posx][posy] = 1;
+        divGridItem = document.getElementById(posx+'y'+posy);
+        divGridItem.classList.add('tuileIndestructible');
       }
       else
       {
-        if(Math.floor(Math.random() * 4) == 1){
-          cases[posx][posy] = 4;
-          divGridItem = document.getElementById(posx+'y'+posy);
-          divGridItem.classList.add('brique');
-        }
-        else{
+        if (posx == 2 && posy == 2 || posx == 2 && posy == 3 || posx == 3 && posy == 2 || posx == row-1 && posy == column-1 || posx == row-1 && posy == column-2 || posx == row-2 && posy == column-1) {
           cases[posx][posy] = 0;
         }
+        else
+        {
+
+          if(Math.random() < 0.7)
+          {
+            cases[posx][posy] = 4;
+            divGridItem = document.getElementById(posx+'y'+posy);
+            divGridItem.classList.add('brique');
+          }
+          else
+          {
+            cases[posx][posy] = 0;
+          }
+        }
       }
-
     }
-
   }
-
+  else
+  {
+    return console.log('Problème de paramètre ! vérifié que vos paramètre soit pas vide. 1. type: String, ID du conteneur. 2. type: String, balise html qui servira de cellule. 3. type: INT, nombre de colonne, nombre impaire. 4. type: INT, nombre de rangée, nombre impaire.');
   }
-<<<<<<< HEAD
-carte('gridContainer','div',19,19);
-console.log();
-=======
-carte('gridContainer','div',maxX,maxY);
->>>>>>> adc70ec899b9475f077f333a195785b233876a2f
+}
+
+carte('gridContainer','div',19,'13');
