@@ -1,15 +1,20 @@
 class Bomb{
-  constructor(posX, posY, time) {
+  constructor(posX, posY) {
       this.posX = posX;
       this.posY = posY;
-      this.time = time;
+
+      this.setExplosion(this);
   }
 
-  getTime(){
-    return this.time;
+  // Explosion in 3 sec
+  setExplosion(el){
+    // console.log('bombe posée');
+    setTimeout(function(){ el.explosion(); }, 3000);
   }
 
-  setTime(time){
-    this.time = time;
+  // Explosion
+  explosion(){
+    // console.log('destruction');
+    cases[this.posX][this.posY] = 0;
   }
 }
