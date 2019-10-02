@@ -19,6 +19,13 @@
   height:50px;
 }
 
+.brique {
+  background: url('img/brique.png');
+}
+
+/* .brique {
+
+======= */
 #hero{
   background-image: url("/images/back.svg");
  }

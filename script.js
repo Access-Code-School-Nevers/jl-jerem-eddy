@@ -1,20 +1,4 @@
 // -------- Initiate table of cases ------ //
-var maxX = 18;
-var maxY = 13;
-var caseSize = 50;
-var nbMonsters = 2;
-var bombs = new Array();
-var cases = new Array(maxX+1);
-var timeAction = 400;
-
-
-
-for (var i = 0; i <= maxX; i++) {
-    cases[i] = new Array(maxY+1);
-}
-
-// Create table
-carte('gridContainer','div',19,13);
 
 // Hero
 var hero = new Hero(2,2,document.getElementById('hero'),0,timeAction,0);
@@ -102,7 +86,7 @@ function carte (parentElementId, childElement, column, row)
   let divGridItem = '';
 
   parentElement.className='grid-container';
-  // parentElement.setAttribute("style", "display: grid;");
+  parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
   // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
 
   let count = 1;
