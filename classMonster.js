@@ -28,10 +28,10 @@ class Monster{
       return this.speed;
   }
   getOffsetLeft(){
-    return this.el.offsetLeft;
+    return (this.getPosY() - 1) * caseSize;
   }
   getOffsetTop(){
-    return this.el.offsetTop;
+    return (this.getPosX() - 1) * caseSize;
   }
 
   setPosX(pos) {
@@ -58,12 +58,12 @@ class Monster{
   // Move an unit
   moveUnit(moveX, moveY){
     if(moveX != 0){
-      this.setPosX(this.getPosX() + moveX);
       animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveX * caseSize)),this.speed);
+      this.setPosX(this.getPosX() + moveX);
     }
     else if(moveY != 0){
-      this.setPosY(this.getPosY() + moveY);
       animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveY * caseSize)),this.speed);
+      this.setPosY(this.getPosY() + moveY);
     }
   }
 
