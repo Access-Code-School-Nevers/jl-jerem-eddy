@@ -116,7 +116,7 @@ function carte (parentElementId, childElement, column, row)
   let divGridItem = '';
 
   parentElement.className='grid-container';
-  // parentElement.setAttribute("style", "display: grid;");
+  parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
   // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
 
   let count = 1;
@@ -166,10 +166,5 @@ function carte (parentElementId, childElement, column, row)
 
   }
 
-console.log(4%2);
-
   }
-
-
-console.table(cases);
-carte('gridContainer','div',19,13);
+carte('gridContainer','div',17,9);

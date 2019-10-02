@@ -1,7 +1,6 @@
 /* <<<<<<< HEAD */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(19, 50px);
 
 }
 
@@ -16,6 +15,10 @@
 
 .tuileIndestructible {
   background: url('img/bloc_indestructible.png');
+}
+
+.brique {
+  background: url('img/brique.png');
 }
 
 /* .brique {
