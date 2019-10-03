@@ -1,23 +1,37 @@
-////////////////////////////////////
-//              TYPE              //
-//          0 = Empty             //
-//          1 = Wall              //
-//          2 = Bomb              //
-//          3 = Unit              //
-////////////////////////////////////
-
 class Bomb{
-  constructor(posX, posY, time) {
+  constructor(posX, posY) {
       this.posX = posX;
       this.posY = posY;
-      this.time = time;
+      this.el = null;
+
+      this.createBomb();
   }
 
-  getTime(){
-    return this.time;
+  getPosX() {
+      return this.posX;
+  }
+  getPosY() {
+      return this.posY;
+  }
+  getEl() {
+      return this.el;
   }
 
-  setTime(time){
-    this.time = time;
+  // Explosion
+  explosion(){
+    cases[this.getPosX()][this.getPosY()] = 0;
+    this.getEl().remove();
+  }
+
+  // Add Image of bomb
+  createBomb(){
+    this.el = document.createElement("img");
+    this.el.src = "img/bomb.png";
+    this.el.classList.add("bomb");
+    this.el.style.left = (caseSize * (this.posY - 1));
+    this.el.style.top = (caseSize * (this.posX - 1));
+
+    var src = document.getElementById("gridContainer");
+    src.appendChild(this.el);
   }
 }

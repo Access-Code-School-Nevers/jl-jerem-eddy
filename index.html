@@ -8,13 +8,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div style="position:relative;width:500px;height:400px;">
-    <div id="monster" style="width:40px;height:40px;background-color:red;position:absolute;"></div>
-    <div id="monster2" style="width:40px;height:40px;background-color:red;position:absolute;left:400px;"></div>
-    <div style="position:absolute;bottom:0;left:0;" onClick="pauseGame()">Pause</div>
+  <div id="gridContainer">
   </div>
-  <script src="classCase.js"></script>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <p class="text"></p>
+
+      <div id="play">
+        <div>
+          <label for="numberMonsters">Nombre de monstres</label>
+          <input type="text" id="numberMonsters" value="2" />
+        </div>
+        <div class="button" onClick="startGame()" id="button">Jouer</div>
+      </div>
+    </div>
+  </div>
+<script src="script-start.js"></script>
+
+  <script src="modal.js"></script>
+  <script src="character.js"></script>
+  <script src="classBomb.js"></script>
   <script src="classMonster.js"></script>
   <script src="script.js"></script>
+  <script src="script-terrain.js"></script>
+  <script src="start.js"></script>
 </body>
 </html>
