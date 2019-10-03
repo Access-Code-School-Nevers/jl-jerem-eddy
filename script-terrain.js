@@ -1,16 +1,3 @@
-
-var maxX = 11;
-var maxY = 19;
-var caseSize = 50;
-var nbMonsters = 1;
-var bombs = new Array();
-var cases = new Array(maxX+1);
-var timeAction = 400;
-
-for (var i = 0; i <= maxX; i++) {
-    cases[i] = new Array(maxY);
-}
-
 function carte (parentElementId, childElement, column, row)
 {
 
@@ -94,9 +81,5 @@ function carte (parentElementId, childElement, column, row)
       }
 
     }
-
   }
-
-  }
-
-carte('gridContainer','div',maxY,maxX);
+}

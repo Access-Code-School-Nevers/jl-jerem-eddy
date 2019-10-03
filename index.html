@@ -9,16 +9,23 @@
 </head>
 <body>
   <div id="gridContainer">
-    <div id="monster0" class="unit" style="background-color:red;left:80px"></div>
-    <div id="hero" class="unit" style="background-color:blue;"></div>
+    <div id="containerUnit">
+    </div>
   </div>
 
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <p class="text">Some text in the Modal..</p>
+      <p class="text"></p>
+
+      <div id="play">
+        <div>
+          <label for="numberMonsters">Nombre de monstres</label>
+          <input type="text" id="numberMonsters" value="2" />
+        </div>
+        <div class="button" onClick="startGame()" id="button">Jouer</div>
+      </div>
     </div>
   </div>
 
@@ -28,5 +35,6 @@
   <script src="classMonster.js"></script>
   <script src="script-terrain.js"></script>
   <script src="script.js"></script>
+  <script src="start.js"></script>
 </body>
 </html>

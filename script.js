@@ -1,14 +1,9 @@
 // -------- Initiate table of cases ------ //
 
-// Hero
-var hero = new Hero(2,2,document.getElementById('hero'),0,timeAction,0);
-hero.setLeft(hero.getEl().offsetWidth * (hero.getPosX() - 1));
-hero.setTop(hero.getEl().offsetWidth * (hero.getPosY() - 1));
-
 
 // Handle character moves
 document.addEventListener('keydown', function(event) {
-  if(hero.getMoving() == 0){
+  if(hero != undefined && hero.getMoving() == 0){
     var position = 0;
 
     if (event.code == 'ArrowUp') {
@@ -45,13 +40,6 @@ document.addEventListener('keydown', function(event) {
       hero.direction(position);
   }
 });
-
-
-
-// Monster
-var monsters = new Array(nbMonsters);
-monsters[0] = new Monster(10,18,document.getElementById('monster0'),0,timeAction);
-
 
 
 // Animate movement of a character
