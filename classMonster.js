@@ -101,12 +101,13 @@ class Monster{
       }
 
       // define if the monster drop a bomb
-      if(this.timeBomb == 0){
-        if(Math.floor(Math.random() * 3) == 1)
-          dropBomb(this.getPosX(), this.getPosY(), this);
+      if(this.getTimeBomb() == 0){
+        if(Math.floor(Math.random() * 3) == 1){
+          setTimeout(function(){
+            dropBomb(el.getPosX(), el.getPosY(), el);
+          },el.speed);
+        }
       }
-      else
-        this.timeBomb--;
 
       setTimeout(function(){
         el.selectDirection(el);

@@ -2,17 +2,36 @@ class Bomb{
   constructor(posX, posY) {
       this.posX = posX;
       this.posY = posY;
+      this.el = null;
 
-      this.setExplosion(this);
+      this.createBomb();
   }
 
-  // Explosion in 3 sec
-  setExplosion(el){
-    setTimeout(function(){ el.explosion(); }, 3000);
+  getPosX() {
+      return this.posX;
+  }
+  getPosY() {
+      return this.posY;
+  }
+  getEl() {
+      return this.el;
   }
 
   // Explosion
   explosion(){
-    cases[this.posX][this.posY] = 0;
+    cases[this.getPosX()][this.getPosY()] = 0;
+    this.getEl().remove();
+  }
+
+  // Add Image of bomb
+  createBomb(){
+    this.el = document.createElement("img");
+    this.el.src = "img/bomb.png";
+    this.el.classList.add("bomb");
+    this.el.style.left = (caseSize * (this.posY - 1));
+    this.el.style.top = (caseSize * (this.posX - 1));
+
+    var src = document.getElementById("gridContainer");
+    src.appendChild(this.el);
   }
 }

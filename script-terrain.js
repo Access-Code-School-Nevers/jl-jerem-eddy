@@ -1,6 +1,6 @@
 
-var maxX = 19;
-var maxY = 11;
+var maxX = 11;
+var maxY = 19;
 var caseSize = 50;
 var nbMonsters = 2;
 var bombs = new Array();
@@ -13,6 +13,7 @@ for (var i = 0; i <= maxX; i++) {
 
 function carte (parentElementId, childElementTagName, column, row)
 {
+  // condition de verification en 2 étape
   if (String(parentElementId) && String(childElementTagName) && parseInt(column) && parseInt(row) != '')
   {
     if (column%2 && row%2 == 0)
@@ -21,25 +22,24 @@ function carte (parentElementId, childElementTagName, column, row)
       row = 19;
     }
 
-
-
     let nColumn = column + 1;
     let nTuile = column * row;
+    // variable qui va contenir des element du DOM
     let parentElement = document.getElementById(parentElementId);
     let childElement = '';
-    let divGridItem = '';
+    let appendChildElement = '';
     let allDiv = '';
+    let divGridItem = '';
+    // variable qui contient les position x et y
     let posx = '';
     let posy = '';
-    let allDivId = '';
+    let tabIdSplit = '';
+    // compteur qui permet de déterminer la ligne (count) ou la colonne (count2)
     let count = 1;
     let count2 = 1;
 
-
     parentElement.className='grid-container';
     parentElement.setAttribute("style", "grid-template-columns: repeat("+column+", 50px);");
-    // parentElement.style.gridTemplateColumns = "repeat(19, 50px);";
-
 
     for(let i = 0;i<nTuile;i++)
     {
@@ -57,16 +57,19 @@ function carte (parentElementId, childElementTagName, column, row)
       childElement.style.height = "50px;";
       childElement.style.background = "url('img/herbe.png');";
       childElement.setAttribute("id", count2+'y'+count);
-      parentElement.appendChild(childElement);
+      appendChildElement = parentElement.appendChild(childElement);
+      appendChildElement.innerHTML = 'x'+count2+'-y'+count;
       count++
     }
+    // recupération de tous les élément html créer prècédement
     allDiv = document.getElementsByClassName('grid-item');
 
+    // boucle qui determine que seront les bloc sur la carte
     for (var i = 0; i < allDiv.length; i++) {
-      allDivId = allDiv[i].id.split('y');
-      posx = allDivId[0];
-      posy = allDivId[1];
-      if (allDivId[0] == 1 || allDivId[0] == row || allDivId[1] == 1 || allDivId[1] == column) {
+      tabIdSplit = allDiv[i].id.split('y');
+      posx = tabIdSplit[0];
+      posy = tabIdSplit[1];
+      if (tabIdSplit[0] == 1 || tabIdSplit[0] == row || tabIdSplit[1] == 1 || tabIdSplit[1] == column) {
 
         cases[posx][posy] = 1;
         divGridItem = document.getElementById(posx+'y'+posy);
@@ -85,15 +88,12 @@ function carte (parentElementId, childElementTagName, column, row)
         }
         else
         {
-
-          if(Math.random() < 0.7)
-          {
+          if(Math.floor(Math.random() * 2) == 1){
             cases[posx][posy] = 4;
             divGridItem = document.getElementById(posx+'y'+posy);
             divGridItem.classList.add('brique');
           }
-          else
-          {
+          else{
             cases[posx][posy] = 0;
           }
         }
@@ -106,4 +106,4 @@ function carte (parentElementId, childElementTagName, column, row)
   }
 }
 
-carte('gridContainer','div',19,'13');
+carte('gridContainer','div',maxY,maxX);
