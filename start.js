@@ -19,6 +19,10 @@ var tabPosMonster = [
 
 // start/restart the game
 function startGame(){
+  nbMonsters = document.getElementById('numberMonsters').value;
+  if(nbMonsters < 1)  nbMonsters = 1;
+  else if(nbMonsters > 3) nbMonsters = 3;
+
   carte('gridContainer','div',maxY,maxX);
 
   // Hero
@@ -29,7 +33,7 @@ function startGame(){
 
   // Monster
   monsters = new Array(nbMonsters);
-  for(var i=0, v=document.getElementById('numberMonsters').value ; i<v ; i++){
+  for(var i=0, v=nbMonsters ; i<v ; i++){
     createMonster(tabPosMonster[0][0],tabPosMonster[0][1],i);
     monsters[i] = new Monster(tabPosMonster[0][0],tabPosMonster[0][1],document.getElementById('monster'+i),0,timeAction);
   }
@@ -60,4 +64,22 @@ function createMonster(x,y,nb){
 
   var src = document.getElementById("gridContainer");
   src.appendChild(el);
+}
+
+// Reset the game
+function reinitializeGame(){
+  monsters.forEach(function(monster, index){
+    monsters[index].clearTimeout();
+    monster[index] = null;
+  });
+
+  hero = null;
+  monsters = null;
+  bombs = new Array();
+
+  document.getElementById('gridContainer').innerHTML = '';
+
+  changeTexteButton();
+
+  openModal();
 }

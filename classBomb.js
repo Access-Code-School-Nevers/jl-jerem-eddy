@@ -19,7 +19,6 @@ class Bomb{
 
   // Explosion
   explosion(){
-    cases[this.getPosX()][this.getPosY()] = 0;
     this.getEl().remove();
   }
 

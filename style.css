@@ -10,6 +10,7 @@
   width: 50px;
   height: 50px;
   background: url('img/herbe.png');
+  background-size:contain;
   z-index:0;
 }
 
@@ -66,8 +67,16 @@
 #myModal img{
   width:400px;
 }
+#myModal .text{
+  margin-top: 280px;
+  margin-left: 50px;
+  width: 300px;
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+}
 #play{
-  margin-top:280px;
+  margin-top:50px;
   margin-left:50px;
   width:300px;
   font-size:26px;
@@ -81,7 +90,7 @@
   font-size:20px;
 }
 #play .button{
-  width:100px;
+  width:120px;
   height:40px;
   text-align:center;
   margin:0 auto;
@@ -96,7 +105,6 @@
   display: block; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 100; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -110,10 +118,9 @@
 .modal-content {
   background: url('img/bg_bomberman.png');
   background-size:contain;
-  margin: auto;
   border: 1px solid #888;
-  width: 880px;
-  height:560px;
+  width: 1000px;
+  height:636px;
 }
 
 /* The Close Button */
