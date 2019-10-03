@@ -27,6 +27,3 @@ Bombes :
 
 X : la ligne de gauche a droite
 Y : la colonne de haut en bas
-
-getPosX = getPosA ///
-getPosY = getPosB

@@ -116,7 +116,9 @@ function createBombExplosion(link,classImg,posX,posY){
             monster.clearTimeout();
             monster = null;
             nbMonsters--;
-            document.getElementById('monster'+index).remove();
+
+            if(document.getElementById('monster'+index) != undefined)
+              document.getElementById('monster'+index).remove();
 
             if(nbMonsters == 0){
               changeTextModal("Victoire !");
@@ -133,4 +135,21 @@ function createBombExplosion(link,classImg,posX,posY){
   setTimeout(function(){
     img.remove();
   },600);
+}
+
+//return number of empty cases around specified case (except specified case)
+function returnNbCases(x,y,from){
+  var nbDirections = 0;
+
+  // Up = 1, Right = 2, Bottom = 3, Left = 4
+  if(cases[x - 1] != undefined && cases[x - 1][y] != undefined && cases[x - 1][y] == 0 && from != 1)
+    nbDirections++;
+  if(cases[x][y + 1] != undefined && cases[x][y + 1] == 0 && from != 2)
+    nbDirections++;
+  if(cases[x + 1] != undefined && cases[x + 1][y] != undefined && cases[x + 1][y] == 0 && from != 3)
+    nbDirections++;
+  if(cases[x][y - 1] != undefined && cases[x][y - 1] == 0 && from != 4)
+    nbDirections++;
+
+  return nbDirections;
 }

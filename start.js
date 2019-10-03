@@ -14,7 +14,8 @@ for (var i = 0; i <= maxX; i++) {
 
 var tabPosMonster = [
   [10,18],
-  [11,18]
+  [10,2],
+  [2,18]
 ];
 
 // start/restart the game
@@ -35,7 +36,7 @@ function startGame(){
   monsters = new Array(nbMonsters);
   for(var i=0, v=nbMonsters ; i<v ; i++){
     createMonster(tabPosMonster[0][0],tabPosMonster[0][1],i);
-    monsters[i] = new Monster(tabPosMonster[0][0],tabPosMonster[0][1],document.getElementById('monster'+i),0,timeAction);
+    monsters[i] = new Monster(tabPosMonster[i][0],tabPosMonster[i][1],document.getElementById('monster'+i),0,timeAction);
   }
 
   closeModal();

@@ -109,24 +109,30 @@ class Monster{
 
       // Get random position in all possible positions
       var posRandom = Math.floor(Math.random() * positions.length);
+      var newX = 0;
+      var newY = 0;
 
       // move monster
       if(positions[posRandom] == 1){ // Up
         this.moveUnit(-1,0);
+        newX--;
       }
       else if(positions[posRandom] == 2){ // Right
         this.moveUnit(0,1);
+        newY++;
       }
       else if(positions[posRandom] == 3){ // Bottom
         this.moveUnit(1,0);
+        newX++;
       }
       else if(positions[posRandom] == 4){ // Left
         this.moveUnit(0,-1);
+        newY--;
       }
 
       // define if the monster drop a bomb
       if(this.getTimeBomb() == 0){
-        if(Math.floor(Math.random() * 3) == 1){
+        if(Math.floor(Math.random() * 3) == 1 && returnNbCases((this.getPosX()+newX),(this.getPosY()+newY),positions[posRandom]) > 1){
           this.setDroppedBomb(1);
 
           if(cases[this.getPosX()- 1][this.getPosY()] == 0)

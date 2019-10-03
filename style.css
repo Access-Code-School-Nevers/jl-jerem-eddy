@@ -31,13 +31,7 @@
 
 ======= */
 #hero{
-<<<<<<< HEAD
-  background: url('images/back.svg');
   position:absolute;
-        width:50px;
-        height:20px;
- }
-=======
   background-image: url("img/bomberman.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -77,35 +71,45 @@
 #myModal .text{
   margin-top: 280px;
   margin-left: 50px;
-  width: 300px;
-  font-size: 26px;
+  width: 400px;
+  font-size: 40px;
   text-align: center;
   font-weight: bold;
+  font-family: 'Bangers', cursive;
 }
 #play{
   margin-top:50px;
   margin-left:50px;
-  width:300px;
-  font-size:26px;
+  width:400px;
+  font-size:40px;
+  font-family: 'Bangers', cursive;
+}
+#play .center-v{
+  display:flex;
+  align-items:center;
+  line-height:40px;
 }
 #play input[type=text]{
   background-color:#ed6d00;
-  border:#ffffff;
-  width:30px;
-  height:30px;
+  border:solid 1px black;
+  width:40px;
+  height:40px;
   text-align:center;
-  font-size:20px;
+  font-size:36px;
+  margin-left:10px;
+  font-family: 'Bangers', cursive;
 }
 #play .button{
-  width:120px;
+  width:160px;
   height:40px;
   text-align:center;
   margin:0 auto;
   background-color:#337ad9;
-  border:solid 1px #ffffff;
+  border:solid 1px black;
   border-radius:5px;
   line-height:40px;
   margin-top:20px;
+  cursor:pointer;
 }
 
 .modal {
