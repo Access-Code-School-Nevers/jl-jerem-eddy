@@ -5,6 +5,8 @@ class Monster{
       this.el = el;
       this.timeBomb = timeBomb;
       this.speed = speed;
+      this.timeout = null;
+      this.droppedBomb = 0;
 
       this.el.style.left = (caseSize * (this.posY - 1));
       this.el.style.top = (caseSize * (this.posX - 1));
@@ -33,6 +35,9 @@ class Monster{
   getOffsetTop(){
     return (this.getPosX() - 1) * caseSize;
   }
+  getDroppedBomb(){
+    return this.droppedBomb;
+  }
 
   setPosX(pos) {
     this.posX = pos;
@@ -53,17 +58,32 @@ class Monster{
       el.timeBomb = 0;
     },3000);
   }
+  setDroppedBomb(val){
+    this.droppedBomb = val;
+  }
 
 
   // Move an unit
   moveUnit(moveX, moveY){
     if(moveX != 0){
+      if(cases[this.getPosX()][this.getPosY()] == 3)
+        cases[this.getPosX()][this.getPosY()] = 0;
+
       animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveX * caseSize)),this.speed);
       this.setPosX(this.getPosX() + moveX);
+
+      if(cases[this.getPosX()][this.getPosY()] == 0)
+        cases[this.getPosX()][this.getPosY()] = 3;
     }
     else if(moveY != 0){
+      if(cases[this.getPosX()][this.getPosY()] == 3)
+        cases[this.getPosX()][this.getPosY()] = 0;
+
       animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveY * caseSize)),this.speed);
       this.setPosY(this.getPosY() + moveY);
+
+      if(cases[this.getPosX()][this.getPosY()] == 0)
+        cases[this.getPosX()][this.getPosY()] = 3;
     }
   }
 
@@ -74,14 +94,18 @@ class Monster{
 
       // Get all directions available
       // Up = 1, Right = 2, Bottom = 3, Left = 4
-      if(this.getPosX() > 1 && cases[this.getPosX() - 1] != undefined && cases[this.getPosX() - 1][this.getPosY()] != undefined && cases[this.getPosX() - 1][this.getPosY()] == 0)
+      if(cases[this.getPosX() - 1][this.getPosY()] == 0 || (this.getDroppedBomb() && cases[this.getPosX() - 1][this.getPosY()] == 5))
         positions.push(1);
-      if(this.getPosY() < maxY && cases[this.getPosX()][this.getPosY() + 1] != undefined && cases[this.getPosX()][this.getPosY() + 1] == 0)
+      if(cases[this.getPosX()][this.getPosY() + 1] == 0 || (this.getDroppedBomb() && cases[this.getPosX()][this.getPosY() + 1] == 5))
         positions.push(2);
-      if(this.getPosX() < maxX && cases[this.getPosX() + 1] != undefined && cases[this.getPosX() + 1][this.getPosY()] != undefined && cases[this.getPosX() + 1][this.getPosY()] == 0)
+      if(cases[this.getPosX() + 1][this.getPosY()] == 0 || (this.getDroppedBomb() && cases[this.getPosX() + 1][this.getPosY()] == 5))
         positions.push(3);
-      if(this.getPosY() > 1 && cases[this.getPosX()][this.getPosY() - 1] != undefined && cases[this.getPosX()][this.getPosY() - 1] == 0)
+      if(cases[this.getPosX()][this.getPosY() - 1] == 0 || (this.getDroppedBomb() && cases[this.getPosX()][this.getPosY() - 1] == 5))
         positions.push(4);
+
+      if(this.getDroppedBomb()){
+        this.setDroppedBomb(0);
+      }
 
       // Get random position in all possible positions
       var posRandom = Math.floor(Math.random() * positions.length);
@@ -103,15 +127,31 @@ class Monster{
       // define if the monster drop a bomb
       if(this.getTimeBomb() == 0){
         if(Math.floor(Math.random() * 3) == 1){
+          this.setDroppedBomb(1);
+
+          if(cases[this.getPosX()- 1][this.getPosY()] == 0)
+            cases[this.getPosX() - 1][this.getPosY()] = 5;
+          if(cases[this.getPosX()][this.getPosY() + 1] == 0)
+            cases[this.getPosX()][this.getPosY() + 1] = 5;
+          if(cases[this.getPosX() + 1][this.getPosY()] == 0)
+            cases[this.getPosX() + 1][this.getPosY()] = 5;
+          if(cases[this.getPosX()][this.getPosY() - 1] == 0)
+            cases[this.getPosX()][this.getPosY() - 1] = 5;
+
           setTimeout(function(){
             dropBomb(el.getPosX(), el.getPosY(), el);
           },el.speed);
         }
       }
 
-      setTimeout(function(){
+      this.timeout = setTimeout(function(){
         el.selectDirection(el);
       },el.speed);
     }
+  }
+
+  // clear timeout
+  clearTimeout(){
+    clearTimeout(this.timeout);
   }
 }

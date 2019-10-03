@@ -24,10 +24,10 @@ class Hero{
       return this.speed;
   }
   getOffsetLeft(){
-    return this.el.offsetLeft;
+    return (this.getPosY() - 1) * caseSize;
   }
   getOffsetTop(){
-    return this.el.offsetTop;
+    return (this.getPosX() - 1) * caseSize;
   }
   getMoving(){
     return this.moving;
@@ -81,12 +81,24 @@ class Hero{
     this.setMoving(this);
 
     if(moveX != 0){
-      this.setPosX(this.getPosX() + moveX);
+      if(cases[this.getPosX()][this.getPosY()] == 3)
+        cases[this.getPosX()][this.getPosY()] = 0;
+
       animate(this.el,"top","px",this.getOffsetTop(),(this.getOffsetTop() + (moveX * caseSize)),this.speed);
+      this.setPosX(this.getPosX() + moveX);
+
+      if(cases[this.getPosX()][this.getPosY()] == 0)
+        cases[this.getPosX()][this.getPosY()] = 3;
     }
     else if(moveY != 0){
-      this.setPosY(this.getPosY() + moveY);
+      if(cases[this.getPosX()][this.getPosY()] == 3)
+        cases[this.getPosX()][this.getPosY()] = 0;
+        
       animate(this.el,"left","px",this.getOffsetLeft(),(this.getOffsetLeft() + (moveY * caseSize)),this.speed);
+      this.setPosY(this.getPosY() + moveY);
+
+      if(cases[this.getPosX()][this.getPosY()] == 0)
+        cases[this.getPosX()][this.getPosY()] = 3;
     }
   }
 }

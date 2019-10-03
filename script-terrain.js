@@ -2,7 +2,7 @@
 var maxX = 11;
 var maxY = 19;
 var caseSize = 50;
-var nbMonsters = 2;
+var nbMonsters = 1;
 var bombs = new Array();
 var cases = new Array(maxX+1);
 var timeAction = 400;
@@ -22,6 +22,7 @@ function carte (parentElementId, childElementTagName, column, row)
       row = 19;
     }
 
+<<<<<<< HEAD
     let nColumn = column + 1;
     let nTuile = column * row;
     // variable qui va contenir des element du DOM
@@ -43,6 +44,20 @@ function carte (parentElementId, childElementTagName, column, row)
 
     for(let i = 0;i<nTuile;i++)
     {
+=======
+    let childElement = document.createElement(this.childElement);
+    childElement.className='grid-item';
+    childElement.setAttribute("style", "color: white;");
+    childElement.style.width = "50px;";
+    childElement.style.height = "50px;";
+    childElement.style.background = "url('img/herbe.png');";
+    childElement.setAttribute("id", count2+'y'+count);
+    var appendChildElement = parentElement.appendChild(childElement);
+    // appendChildElement.innerHTML = 'x'+count2+'-y'+count;
+    count++
+  }
+  let allDiv = document.getElementsByClassName('grid-item');
+>>>>>>> 61982c57e22f7de011f0de1deae4561e51b2f86e
 
       if (count == nColumn)
       {

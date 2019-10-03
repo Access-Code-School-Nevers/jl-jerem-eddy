@@ -21,11 +21,12 @@ Bombes :
 //          2 = Bomb              //
 //          3 = Unit              //
 //          4 = Destructible Wall //
+//          5 = Range of explosion//
 ////////////////////////////////////
 
 
 X : la ligne de gauche a droite
 Y : la colonne de haut en bas
 
-getPosX = getPosA /// 
+getPosX = getPosA ///
 getPosY = getPosB
