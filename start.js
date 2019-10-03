@@ -45,7 +45,7 @@ function createHero(x,y){
   el.style.left = (caseSize * (y - 1));
   el.style.top = (caseSize * (x - 1));
 
-  var src = document.getElementById("containerUnit");
+  var src = document.getElementById("gridContainer");
   src.appendChild(el);
 }
 
@@ -53,10 +53,11 @@ function createHero(x,y){
 function createMonster(x,y,nb){
   var el = document.createElement("div");
   el.classList.add("unit");
+  el.classList.add("monster");
   el.id = "monster"+nb;
   el.style.left = (caseSize * (y - 1));
   el.style.top = (caseSize * (x - 1));
 
-  var src = document.getElementById("containerUnit");
+  var src = document.getElementById("gridContainer");
   src.appendChild(el);
 }

@@ -81,5 +81,7 @@ function carte (parentElementId, childElement, column, row)
       }
 
     }
+
   }
-}
+
+  }

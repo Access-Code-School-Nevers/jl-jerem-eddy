@@ -70,16 +70,16 @@ function dropBomb(posX, posY, character){
       bombs[value].explosion();
       bombs[value] = null;
 
-      createBombExplosion('img/explosionCenter.png','bomb',posX,posY);
+      createBombExplosion('img/flame.png','bomb',posX,posY);
 
       if(cases[posX - 1][posY] != 1)
-        createBombExplosion('img/explosionTop.png','bomb',(posX-1),posY);
+        createBombExplosion('img/flame.png','bomb',(posX-1),posY);
       if(cases[posX][posY + 1] != 1)
-        createBombExplosion('img/explosionRight.png','bomb',posX,(posY + 1));
+        createBombExplosion('img/flame.png','bomb',posX,(posY + 1));
       if(cases[posX + 1][posY] != 1)
-        createBombExplosion('img/explosionBottom.png','bomb',(posX + 1),posY);
+        createBombExplosion('img/flame.png','bomb',(posX + 1),posY);
       if(cases[posX][posY - 1] != 1)
-        createBombExplosion('img/explosionLeft.png','bomb',posX,(posY - 1));
+        createBombExplosion('img/flame.png','bomb',posX,(posY - 1));
 
     }, 2000);
 
