@@ -2,7 +2,7 @@
 var maxX = 11;
 var maxY = 19;
 var caseSize = 50;
-var nbMonsters = 2;
+var nbMonsters = 1;
 var bombs = new Array();
 var cases = new Array(maxX+1);
 var timeAction = 400;
@@ -55,7 +55,7 @@ function carte (parentElementId, childElement, column, row)
     childElement.style.background = "url('img/herbe.png');";
     childElement.setAttribute("id", count2+'y'+count);
     var appendChildElement = parentElement.appendChild(childElement);
-    appendChildElement.innerHTML = 'x'+count2+'-y'+count;
+    // appendChildElement.innerHTML = 'x'+count2+'-y'+count;
     count++
   }
   let allDiv = document.getElementsByClassName('grid-item');
